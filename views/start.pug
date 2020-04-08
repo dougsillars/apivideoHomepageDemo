@@ -1,0 +1,36 @@
+head
+  link(rel='stylesheet', href='demo.css')
+  link(rel='icon', href='icon.ico', type='image/x-icon')
+body
+  header.header 
+    h1 Test out api.video
+  
+  h2 Upload a video, and have an encoded video stream in no time!  
+  h2 Add your e-mail address to receive a link to our video without watermark. 
+  h2 If you do not submit an e-mail address, your video will be watermarked and deleted after 72 hours.
+  
+  
+  form(action="/" method = "POST" enctype="multipart/form-data").form  
+    p
+    | Video Name:
+    input(type='text', name='title', value="video title").input
+    p
+    | Video Description:
+    input(type='text', name='description', value="video description").input
+    p
+    | Video Tags (separate by commas):
+    input(type='text', name='tag', value="twitter").input
+    p
+    |Save as Mp4?
+    input(type='radio', name='mp4', value='true', checked) 
+    | true 
+    input(type='radio', name='mp4', value='false') 
+    | false
+    p
+    input(type='file', name='source').input 
+    input(type='hidden' name='metadata' value='{"videoUpload":"true"}')  
+    p   
+    p
+    input(type='submit', value='Submit')
+    
+  i By submitting your e-mail, you agree to receive (very occasional) e-mails from api.video. 
