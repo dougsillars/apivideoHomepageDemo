@@ -88,8 +88,8 @@ function show_output(str){
 		var socketOptions = {secure: true, reconnection: true, reconnectionDelay: 1000, timeout:15000, pingTimeout: 			15000, pingInterval: 45000,query: {framespersecond: framerate, audioBitrate: audioBitrate}};
 		
 		//start socket connection
-		console.log("socket address", "/");
-		socket = io.connect("/", socketOptions);
+		console.log("socket address", socketio_address);
+		socket = io.connect(socketio_address, socketOptions);
 		console.log("socket", socket);
 		// console.log("ping interval =", socket.pingInterval, " ping TimeOut" = socket.pingTimeout);
  		//output_message.innerHTML=socket;
