@@ -1,8 +1,0 @@
-[Unit]
-Description=start videosite node
-
-[Service]
-ExecStart=/bin/bash /home/ubuntu/videosite/startup.sh
-
-[Install]
-WantedBy=multi-user.target

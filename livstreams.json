@@ -1,0 +1,155 @@
+{
+	"data": [
+		{
+			"liveStreamId": "li1dlJkwlwH4B9YhUqEnynZV",
+			"streamKey": "e3399315-1242-4542-a5ee-3f6b032e7b36",
+			"name": "website live1",
+			"record": false,
+			"broadcasting": false,
+			"assets": {
+				"iframe": "<iframe src=\"https://embed.api.video/live/li1dlJkwlwH4B9YhUqEnynZV\" width=\"100%\" height=\"100%\" frameborder=\"0\" scrolling=\"no\" allowfullscreen=\"\"></iframe>",
+				"player": "https://embed.api.video/live/li1dlJkwlwH4B9YhUqEnynZV",
+				"hls": "https://live.api.video/li1dlJkwlwH4B9YhUqEnynZV.m3u8",
+				"thumbnail": "https://cdn.api.video/live/li1dlJkwlwH4B9YhUqEnynZV/thumbnail.jpg"
+			}
+		},
+		{
+			"liveStreamId": "li13O9YJcklYU3dZdRrf1Czc",
+			"streamKey": "8a04646c-debf-4997-9d10-1c558f55be49",
+			"name": "website live2",
+			"record": false,
+			"broadcasting": false,
+			"assets": {
+				"iframe": "<iframe src=\"https://embed.api.video/live/li13O9YJcklYU3dZdRrf1Czc\" width=\"100%\" height=\"100%\" frameborder=\"0\" scrolling=\"no\" allowfullscreen=\"\"></iframe>",
+				"player": "https://embed.api.video/live/li13O9YJcklYU3dZdRrf1Czc",
+				"hls": "https://live.api.video/li13O9YJcklYU3dZdRrf1Czc.m3u8",
+				"thumbnail": "https://cdn.api.video/live/li13O9YJcklYU3dZdRrf1Czc/thumbnail.jpg"
+			}
+		},
+		{
+			"liveStreamId": "li3jh2527GPIPFlGMWny0Gji",
+			"streamKey": "6d1ff46d-bd6c-44d6-a409-c657af1a3f8a",
+			"name": "website live3",
+			"record": false,
+			"broadcasting": false,
+			"assets": {
+				"iframe": "<iframe src=\"https://embed.api.video/live/li3jh2527GPIPFlGMWny0Gji\" width=\"100%\" height=\"100%\" frameborder=\"0\" scrolling=\"no\" allowfullscreen=\"\"></iframe>",
+				"player": "https://embed.api.video/live/li3jh2527GPIPFlGMWny0Gji",
+				"hls": "https://live.api.video/li3jh2527GPIPFlGMWny0Gji.m3u8",
+				"thumbnail": "https://cdn.api.video/live/li3jh2527GPIPFlGMWny0Gji/thumbnail.jpg"
+			}
+		},
+		{
+			"liveStreamId": "li2kvDGqdxa0q5AsOOBaGA1k",
+			"streamKey": "3622465d-7de4-44ce-bc70-49b09484efb7",
+			"name": "website live4",
+			"record": false,
+			"broadcasting": false,
+			"assets": {
+				"iframe": "<iframe src=\"https://embed.api.video/live/li2kvDGqdxa0q5AsOOBaGA1k\" width=\"100%\" height=\"100%\" frameborder=\"0\" scrolling=\"no\" allowfullscreen=\"\"></iframe>",
+				"player": "https://embed.api.video/live/li2kvDGqdxa0q5AsOOBaGA1k",
+				"hls": "https://live.api.video/li2kvDGqdxa0q5AsOOBaGA1k.m3u8",
+				"thumbnail": "https://cdn.api.video/live/li2kvDGqdxa0q5AsOOBaGA1k/thumbnail.jpg"
+			}
+		},
+		{
+			"liveStreamId": "li1kkTR1SwmEpuIZB2Dg9mBw",
+			"streamKey": "a83dc788-aad9-4646-ad1a-de6ff499fe9a",
+			"name": "website live5",
+			"record": false,
+			"broadcasting": false,
+			"assets": {
+				"iframe": "<iframe src=\"https://embed.api.video/live/li1kkTR1SwmEpuIZB2Dg9mBw\" width=\"100%\" height=\"100%\" frameborder=\"0\" scrolling=\"no\" allowfullscreen=\"\"></iframe>",
+				"player": "https://embed.api.video/live/li1kkTR1SwmEpuIZB2Dg9mBw",
+				"hls": "https://live.api.video/li1kkTR1SwmEpuIZB2Dg9mBw.m3u8",
+				"thumbnail": "https://cdn.api.video/live/li1kkTR1SwmEpuIZB2Dg9mBw/thumbnail.jpg"
+			}
+		},
+		{
+			"liveStreamId": "li2BqT4jKJKqZR4EBd9BBrmK",
+			"streamKey": "cc55e877-a7cf-4e85-886b-cbedf2b38e8f",
+			"name": "website live6",
+			"record": false,
+			"broadcasting": false,
+			"assets": {
+				"iframe": "<iframe src=\"https://embed.api.video/live/li2BqT4jKJKqZR4EBd9BBrmK\" width=\"100%\" height=\"100%\" frameborder=\"0\" scrolling=\"no\" allowfullscreen=\"\"></iframe>",
+				"player": "https://embed.api.video/live/li2BqT4jKJKqZR4EBd9BBrmK",
+				"hls": "https://live.api.video/li2BqT4jKJKqZR4EBd9BBrmK.m3u8",
+				"thumbnail": "https://cdn.api.video/live/li2BqT4jKJKqZR4EBd9BBrmK/thumbnail.jpg"
+			}
+		},
+		{
+			"liveStreamId": "li1OTpQDOSM0bTiNKMcJK2UO",
+			"streamKey": "4f383758-2865-4081-9f95-922f39c1de5e",
+			"name": "website live7",
+			"record": false,
+			"broadcasting": false,
+			"assets": {
+				"iframe": "<iframe src=\"https://embed.api.video/live/li1OTpQDOSM0bTiNKMcJK2UO\" width=\"100%\" height=\"100%\" frameborder=\"0\" scrolling=\"no\" allowfullscreen=\"\"></iframe>",
+				"player": "https://embed.api.video/live/li1OTpQDOSM0bTiNKMcJK2UO",
+				"hls": "https://live.api.video/li1OTpQDOSM0bTiNKMcJK2UO.m3u8",
+				"thumbnail": "https://cdn.api.video/live/li1OTpQDOSM0bTiNKMcJK2UO/thumbnail.jpg"
+			}
+		},
+		{
+			"liveStreamId": "li5s4HlsvQIVdhpWoiiWC8Il",
+			"streamKey": "de9c1094-1bab-4496-a8b4-1636a4dd4c86",
+			"name": "website live8",
+			"record": false,
+			"broadcasting": false,
+			"assets": {
+				"iframe": "<iframe src=\"https://embed.api.video/live/li5s4HlsvQIVdhpWoiiWC8Il\" width=\"100%\" height=\"100%\" frameborder=\"0\" scrolling=\"no\" allowfullscreen=\"\"></iframe>",
+				"player": "https://embed.api.video/live/li5s4HlsvQIVdhpWoiiWC8Il",
+				"hls": "https://live.api.video/li5s4HlsvQIVdhpWoiiWC8Il.m3u8",
+				"thumbnail": "https://cdn.api.video/live/li5s4HlsvQIVdhpWoiiWC8Il/thumbnail.jpg"
+			}
+		},
+		{
+			"liveStreamId": "li3ojriFQruyqj1dDeGew049",
+			"streamKey": "776d94e0-9e73-4a43-896f-e8cf17cc13c5",
+			"name": "website live9",
+			"record": false,
+			"broadcasting": false,
+			"assets": {
+				"iframe": "<iframe src=\"https://embed.api.video/live/li3ojriFQruyqj1dDeGew049\" width=\"100%\" height=\"100%\" frameborder=\"0\" scrolling=\"no\" allowfullscreen=\"\"></iframe>",
+				"player": "https://embed.api.video/live/li3ojriFQruyqj1dDeGew049",
+				"hls": "https://live.api.video/li3ojriFQruyqj1dDeGew049.m3u8",
+				"thumbnail": "https://cdn.api.video/live/li3ojriFQruyqj1dDeGew049/thumbnail.jpg"
+			}
+		},
+		{
+			"liveStreamId": "li1YXMWsiRBQMulCfbp5Mlyl",
+			"streamKey": "42834171-9b4b-4d5a-934b-912972358531",
+			"name": "website live10",
+			"record": false,
+			"broadcasting": false,
+			"assets": {
+				"iframe": "<iframe src=\"https://embed.api.video/live/li1YXMWsiRBQMulCfbp5Mlyl\" width=\"100%\" height=\"100%\" frameborder=\"0\" scrolling=\"no\" allowfullscreen=\"\"></iframe>",
+				"player": "https://embed.api.video/live/li1YXMWsiRBQMulCfbp5Mlyl",
+				"hls": "https://live.api.video/li1YXMWsiRBQMulCfbp5Mlyl.m3u8",
+				"thumbnail": "https://cdn.api.video/live/li1YXMWsiRBQMulCfbp5Mlyl/thumbnail.jpg"
+			}
+		}
+	],
+	"pagination": {
+		"currentPage": 1,
+		"currentPageItems": 10,
+		"pageSize": 25,
+		"pagesTotal": 1,
+		"itemsTotal": 10,
+		"links": [
+			{
+				"rel": "self",
+				"uri": "/live-streams?currentPage=1&pageSize=25"
+			},
+			{
+				"rel": "first",
+				"uri": "/live-streams?currentPage=1&pageSize=25"
+			},
+			{
+				"rel": "last",
+				"uri": "/live-streams?currentPage=1&pageSize=25"
+			}
+		]
+	}
+}

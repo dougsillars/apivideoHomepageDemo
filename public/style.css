@@ -1,59 +1,92 @@
-.header {
-  text-align: center;
-  padding-top: 25px;
-  padding-bottom: 25px;
-  width: 100%;
-  color: #FFFFFF;
-  background-image: linear-gradient(#FC601A, #FD8B25)
-  
+
+  .container{width:100%;
+      background-color: #FFFFFF}
+  .buttons { 
+    width: 100%;
+    padding: 20px;
+    background-color: #f0e68c;
   }
-.formPadding{
- padding: 2%;
-}
-  
-  
-.form {
-  font-size: 25px;
-  width: 90%;
-  background: #fff;
-  padding: 20px;
-  border-style: solid;
-  border-color: #A5A5A5;
-  border-width: 3px;
-  
-}
-input[type=text], input[type=url], input[type=email], input[type=password], input[type=tel], input[type=file] {
-  -webkit-appearance: none; -moz-appearance: none;
-  margin: 0;
-  width: 100%; height: 40px;
-  line-height: 40px;font-size: 25px;
-  
-}
-input[type=radio] {
- width: 25px; height: 25px;
- -webkit-border-radius: 22px; -moz-border-radius: 22px; border-radius: 22px;
- border: 1px solid #bbb;
-}
+  .upload {
+	width: 100%;
+    background-color: orange;
+	border-radius: 15px;
+    text-align:center;
+    color: white;
+  }
+  .live {
+	width: 100%;
+    background-color: blue;
+	border-radius: 15px;
+    text-align:center;
+    color: white;
+  }
+  .video{
+    width : 100%;
+    border-style: solid;
+    padding: 5px;
+	
+  }
+  .serverResponse{
+    width : 100%;
+	padding-left: 20px;
+	padding-right: 20px;
+    min-height:6em;
+	max-height:12em;
+	background-color: none;
+	overflow-wrap: break-word;
+	overflow: scroll;
+    border-style: solid;
+    border-color: gray;
+    
+  }
+  .button{
+      display: block;
+      padding: 20px;
+      width: 100%; 
+      border-radius: 15px;
+      background-color: transparent;
+      font-size:20px;
+      text-align:center;
+      color: white;
+  }
+  .liveTest {
+	width: 100%;
+	padding: 20px;
+    background-color: blue;
+    text-align:center;
+    color: white;
+  }
+  .livestream {
+	width: 100%;
+	padding: 20px;
+    background-color: green;
+    text-align:center;
+    color: white;
+  }
 
-input[type=submit]{
-    -webkit-appearance: none; -moz-appearance: none;
-	line-height: 40px;font-size: 17px;
-    display: block;
-    margin: 1.5em 0;
-    font-size: 1em; line-height: 2.5em;
-    color: #333;
-    font-weight: bold;
-    height: 2.5em; width: 100%;
-    background: #fdfdfd; background: -moz-linear-gradient(top, #fdfdfd 0%, #bebebe 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fdfdfd), color-stop(100%,#bebebe)); background: -webkit-linear-gradient(top, #fdfdfd 0%,#bebebe 100%); background: -o-linear-gradient(top, #fdfdfd 0%,#bebebe 100%); background: -ms-linear-gradient(top, #fdfdfd 0%,#bebebe 100%); background: linear-gradient(to bottom, #fdfdfd 0%,#bebebe 100%);
-    border: 1px solid #bbb;
-    -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;
-   }
-
-.input{
- width: 75%;
-
-}
-.video{
- width: 75%;
- height:75%;
+/*fullscreen*/
+@media only screen and (min-width: 900px){
+  .container{width:100%;}
+    .buttons { 
+      float: left;
+      width: 25%;
+    }
+    .video{
+      float:right;
+      width : 33%;
+    }
+    .serverResponse{
+      align: center;
+      margin:0 auto;
+      width : 25%;
+    }
+    .liveTest {
+  	
+	width: 100%;
+  	padding: 20px;
+    }
+    .livestream {
+  	width: 100%;
+  	padding: 20px;
+    }
 }
