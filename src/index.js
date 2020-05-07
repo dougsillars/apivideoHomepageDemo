@@ -148,7 +148,7 @@ app.post('/', (req,res) =>{
 		uploadCompleteTimer = Date.now();
 		console.log("upload complete", uploadCompleteTimer);
 		//console.log("video",video);
-		var videoJson = JSON.stringify(video);
+		var videoJson = JSON.stringify(video, null, 2);
 	   //delete file on node server
 		fs.unlink(files.source.path, function (err) {
     	if (err) throw err;
@@ -185,7 +185,7 @@ app.post('/', (req,res) =>{
 	  			//now we can get the MP4 url, and send the email and post the response
 				//now we add the tags to let zapier know it s ready to go
 				
-				var videoResponse = "uploaded: "+ uploadSeconds+"s \r\n processed: " + processSeconds +"s \n"+videoJson;
+				var videoResponse = "Video uploaded in: "+ uploadSeconds+"s \n Video processed in: " + processSeconds +"s \n "+videoJson;
 				console.log("videoResponse", videoResponse);
 				var iframecode = "iframe src='"+player+"#autoplay'  width = '100%' frameborder='0' scrolling='no'";
 				console.log(iframecode);

@@ -4,7 +4,7 @@
   .buttons { 
     width: 100%;
     padding: 20px;
-    background-color: #f0e68c;
+   
   }
   .upload {
 	width: 100%;
@@ -16,14 +16,15 @@
   .live {
 	width: 100%;
     background-color: blue;
-	border-radius: 15px;
+    border-radius: 15px;
     text-align:center;
     color: white;
   }
   .video{
     width : 100%;
     border-style: solid;
-    padding: 5px;
+	overflow:hidden;
+    padding: 20px;
 	
   }
   .serverResponse{
@@ -37,12 +38,16 @@
 	overflow: scroll;
     border-style: solid;
     border-color: gray;
-    
+	color:white;
+	white-space: pre-line;
+	background-color:black;
+	font-family:"Courier New", Courier, monospace;
   }
   .button{
       display: block;
       padding: 20px;
       width: 100%; 
+	  border-color:transparent;
       border-radius: 15px;
       background-color: transparent;
       font-size:20px;
@@ -67,18 +72,31 @@
 /*fullscreen*/
 @media only screen and (min-width: 900px){
   .container{width:100%;}
-    .buttons { 
-      float: left;
-      width: 25%;
-    }
+  .buttons{
+  	overflow:hidden;
+  }
+	.upload{
+		width:33%;
+		margin-left: 15%;
+		float:left;
+		
+	    
+	}
+	.live{
+		width:33%;
+		float:right;
+		margin-right: 15%;
+		align: center;
+		
+	}
     .video{
       float:right;
-      width : 33%;
+      width : 45%;
     }
     .serverResponse{
-      align: center;
+      float:left;
       margin:0 auto;
-      width : 25%;
+      width : 45%;
     }
     .liveTest {
   	

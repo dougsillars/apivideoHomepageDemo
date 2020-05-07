@@ -15,7 +15,7 @@ body
       .live
         form(name='livestreamForm',action='/' method = 'GET')
           input(id='livetext',type='text', name = "live", value="true",style='display:none')
-          input(class = "button", name="livestream", value ="5 minute livestream" onclick='initiateLivestream();')
+          input(class = "button", name="livestream", value ='5 minute livestream' onclick='initiateLivestream();')
     .video
       |
       #{iframecode}
