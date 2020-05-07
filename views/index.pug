@@ -11,11 +11,11 @@ body
         form(name='uploadForm', action='/' method = 'POST',  enctype="multipart/form-data")
           input(id='text',type='text', name = "test", value="test",style='display:none')
           input(id='file',type='file', name="source", style='display:none')
-          input(class="button",type="submit",value='Upload a video',onclick='thisFileUpload();')
+          input(class="button" type="button",value='Upload a video',onclick='thisFileUpload();')
       .live
         form(name='livestreamForm',action='/' method = 'GET')
           input(id='livetext',type='text', name = "live", value="true",style='display:none')
-          input(class = "button", type="submit", name="livestream", value ='5 minute livestream' onclick='initiateLivestream();')
+          input(class = "button",type="submit", name="livestream", value ='5 minute livestream' onclick='initiateLivestream();')
     .video
       |
       #{iframecode}
@@ -24,13 +24,14 @@ body
       | 
       p #{videoResponse}
       p
-    
     #liveTest
     #Livestream
-      p live stream
+      p 
     #output_message
     #output_console
     
     #rtmpEndpoint #{rtmpEndpoint}
     #video_show
     video(id='output_video',autoplay)
+	
+    

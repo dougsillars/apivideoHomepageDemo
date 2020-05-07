@@ -3,7 +3,7 @@ console.log(queryString);
 const urlParams = new URLSearchParams(queryString);
 const live = urlParams.get('live');
 console.log("live?",live);
-var framerate = 15;
+var framerate = 10;
 var audioBitrate = 11025;
 var width = 240;
 var height = 240;
@@ -27,12 +27,13 @@ if(live){
  function thisFileUpload() {
     //get VOD video to upload
 	 const fileElement = document.getElementById('file');
-	 
 	 fileElement.click();
 	//upload file to NodeJS for upload to api.video
 	fileElement.addEventListener("change", function() {	
-			 console.log("file selected", document.getElementById('file').files[0]);
-			 uploadForm.requestSubmit();
+		console.log("fileslist", fileElement.files);
+	    console.log("file selected", document.getElementById('file').files[0]);
+		uploadForm.submit("/", method = 'POST',  enctype="multipart/form-data");
+		 
 		});
     //send to Node server to uploa
 	console.log('done');
@@ -182,12 +183,13 @@ function requestMedia(){
 	navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
 		//let supported = navigator.mediaDevices.getSupportedConstraints();
 		//console.log(supported);
+		console.log("chose the camera");
 		video_show(stream);//only show locally, not remotely
 		//recordingCircle.style.fill='red';
 		//socket.emit('config_rtmpDestination', url);
 		socket.emit('start','start');
 		mediaRecorder = new MediaRecorder(stream);
-		mediaRecorder.start(5000);
+		mediaRecorder.start(250);
 
 		//show remote stream
 		var livestream = document.getElementsByClassName("Livestream");

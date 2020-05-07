@@ -18,6 +18,9 @@ app.use(favicon('public/icon.ico'));
 var bodyParser = require('body-parser')
 app.use(bodyParser.json({limit: '2Gb'}));
 
+//placeholder image for the iframe
+var iframecode = "img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/1810676/video_placeholder.png' width='100%'";
+
 //formidable takes the form data and saves the file, and parameterises the fields into JSON
 const formidable = require('formidable')
 //email-validator to validate the email address
@@ -78,6 +81,11 @@ app.get('/', (req, res) => {
 			if (chosenStream <0){
 				//TODO
 				//Error message required
+				
+				//no streams are availabe
+				var videoResponse = "All the test streams are in use. Please try again later."
+				
+				return res.render('index', {iframecode, videoResponse, rtmpEndpoint});
 			}else{
 				//valid stream
 				
@@ -90,8 +98,12 @@ app.get('/', (req, res) => {
 			var streamUrl = "https://embed.api.video/live/" + streamId;
 			//var iframecode = "iframe src='"+player+"#autoplay'  width = '100%' frameborder='0' scrolling='no'";
 				
-			var iframecode = "iframe src='"+streamUrl+"' controls width='100%' frameborder='0' scrolling='no'";
-			var videoResponse = "live response here";
+		    iframecode = "iframe src='"+streamUrl+"' controls width='100%' frameborder='0' scrolling='no'";
+			var videoResponse = JSON.stringify(streams[chosenStream],null, 2);
+			
+			//we should not reyurn the page until broadcasting is true
+			
+			
 			return res.render('index', {iframecode, videoResponse, rtmpEndpoint});
 			
 		});
@@ -101,7 +113,7 @@ app.get('/', (req, res) => {
 		
 	}else{
 	
-		var iframecode = "img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/1810676/video_placeholder.png' width='100%'";
+		
 		var videoResponse = "When you upload a video, the API response will appear here."
 		//not live..just loading the page
 		
@@ -187,7 +199,7 @@ app.post('/', (req,res) =>{
 				
 				var videoResponse = "Video uploaded in: "+ uploadSeconds+"s \n Video processed in: " + processSeconds +"s \n "+videoJson;
 				console.log("videoResponse", videoResponse);
-				var iframecode = "iframe src='"+player+"#autoplay'  width = '100%' frameborder='0' scrolling='no'";
+				iframecode = "iframe src='"+player+"#autoplay'  width = '100%' frameborder='0' scrolling='no'";
 				console.log(iframecode);
 				
 	  		   return res.render('index', {iframecode, videoResponse});
@@ -239,22 +251,6 @@ io.on('connection', function(socket){
 	
 	var ffmpeg_process, feedStream=false;
 
-/*	
-	socket.on('config_rtmpDestination',function(m){
-		if(typeof m != 'string'){
-			socket.emit('fatal','rtmp destination setup error.');
-			return;
-		}
-		var regexValidator=/^rtmp:\/\/[^\s]*$/;//TODO: should read config
-		if(!regexValidator.test(m)){
-			socket.emit('fatal','rtmp address rejected.');
-			return;
-		}
-		rtmpEndpoint=m;
-		console.log('message','rtmp destination set to:'+m);
-		socket.emit('message','rtmp destination set to:'+m);
-	}); 
-*/	
 
 	//socket._vcodec='libvpx';//from firefox default encoder
 	socket.on('config_vcodec',function(m){
@@ -392,27 +388,22 @@ process.on('uncaughtException', function(err) {
 })
 
 function streamPicker(streams, counter){
-	console.log(counter);
-	var chosenStream;
+	console.log("counter", counter);
+	var chosenStream = -1;
 	let streamCount = streams.length;
-	console.log(streamCount);
+	//console.log(streams);
+	console.log("streamcount", streamCount);
 	let randomNumber = Math.floor(Math.random()*streamCount);
-	console.log("streampicking", streams[randomNumber]);
-	if(!streams[randomNumber].broadcasting){
-		//the chosen stream is NOT broadcasting
-		chosenStream = randomNumber;
-	}else{
-		//chosen stream IS broadcasting
-		//pick another
-		//but not to infinity - otherwise the demo will break!
-		counter++;
-		if (counter < streamCount*2){
-			streamPicker(streams, counter);	
-		}
-		else{
-			chosenStream = -1;
+	console.log("is broadcasting: ", streams[randomNumber].broadcasting);
+	//console.log("streampicking", streams[randomNumber]);
+	for(var i=0;i<streamCount;i++){
+		if(!streams[i].broadcasting){
+			//not broadcasting, choose this one
+			chosenStream = i;
 		}
 	}
+	
+	console.log("streamPicker stream chosen", chosenStream);
 	return chosenStream;
 	
 }
