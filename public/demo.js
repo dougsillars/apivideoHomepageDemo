@@ -17,7 +17,7 @@ if(live){
 	var state ="stop";
 	console.log("state initiated = " +state); 
 	connect_server();
-
+     
 	
 	//do live stuff
 }
@@ -224,9 +224,27 @@ function requestMedia(){
 		}
 	}).catch(function(err) {
 		//console.log('The following error occured: ' + err);
-		show_output('Local getUserMedia ERROR:'+err);
-		console.log('Local getUserMedia ERROR:'+err);
-		output_message.innerHTML="Local video source size is not support or No camera ?"+width+"x"+height;
+		//this goes to the 
+		//show_output('Live stream error:'+err);
+		console.log('Live stream error:'+err);
+		console.log(err);
+		var error ="unknown";
+		var errorMessage = "Sorry, an unknown error occurred.";
+		var blackbox = document.getElementsByClassName("serverResponse");
+		//there is only one element with the class serverResponse
+		if(err.message){
+			error = err.message;
+		}
+		
+		
+		if(error.includes("Invalid constraint")){
+			//getUserMedia is not supported in the browser (probably safari)
+			errorMessage="Sorry, but your browser does not support the APIs for live streaming.  Please try Firefox, Chrome or Edge.";
+		}else if("The request is not allowed"){
+			errorMessage="Sorry, but you must allow camera and microphone access to record video.";
+			
+		}
+		blackbox[0].innerHTML=errorMessage;
 		 state="stop";
 		
 	});

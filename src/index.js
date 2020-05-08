@@ -19,7 +19,8 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.json({limit: '2Gb'}));
 
 //placeholder image for the iframe
-var iframecode = "img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/1810676/video_placeholder.png' width='100%'";
+var placeholderImage = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1810676/video_placeholder.png";
+var iframecode = "img src='"+placeholderImage+"' width='100%'";
 
 //formidable takes the form data and saves the file, and parameterises the fields into JSON
 const formidable = require('formidable')
@@ -102,21 +103,20 @@ app.get('/', (req, res) => {
 			var videoResponse = JSON.stringify(streams[chosenStream],null, 2);
 			
 			//we should not reyurn the page until broadcasting is true
+			//but broadcasting cant be true until the camera starts - ehich requires the page!
 			
-			
-			return res.render('index', {iframecode, videoResponse, rtmpEndpoint});
-			
+           				
+			return res.render('index', {iframecode, videoResponse, rtmpEndpoint});   	 		
+
 		});
-		
-		
 		
 		
 	}else{
 	
-		
+		iframecode =  "img src='"+placeholderImage+"' width='100%'";
 		var videoResponse = "When you upload a video, the API response will appear here."
 		//not live..just loading the page
-		
+		console.log("default page", iframecode);
 		return res.render('index', {iframecode, videoResponse});
 	}
 	
@@ -202,6 +202,7 @@ app.post('/', (req,res) =>{
 				iframecode = "iframe src='"+player+"#autoplay'  width = '100%' frameborder='0' scrolling='no'";
 				console.log(iframecode);
 				
+			
 	  		   return res.render('index', {iframecode, videoResponse});
 		   	 		
 	  		}else{
