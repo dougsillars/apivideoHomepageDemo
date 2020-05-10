@@ -52,7 +52,8 @@ var client = new apiVideo.Client({ apiKey: process.env.apivideoKeyProd});
 //get request is the initial request - loads the start.pug
 //start.pug has the form
 app.get('/', (req, res) => {
-	console.log("get index loaded");
+	var remoteIp = req.ip;
+	console.log("get index loaded", remoteIp);
 	var live = req.query.live;
 	if(live){
 		//we have to add a livestream!
