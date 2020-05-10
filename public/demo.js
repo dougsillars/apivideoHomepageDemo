@@ -17,9 +17,35 @@ if(live){
 	var state ="stop";
 	console.log("state initiated = " +state); 
 	connect_server();
+   
+    
+   
+      //onloadstuff
+    window.onload = function(){
+    //define the video player  and url 
+ 	   	const player = videojs('liveVideo');
+		console.log("player",player);
+	//check to see if the video exists or not 
+	//it only exists once a stream has started
+        setTimeout(function (){
      
+			var liveManifest = document.getElementById("liveManifest").innerHTML;
+			var liveResponse = document.getElementById("liveResponse").innerHTML;
+			
+			console.log("liveManifest",liveManifest);
+			//add player
+			console.log("adding video url!");
+	    	player.src({
+	      	  	src: liveManifest,
+	      	  	type: 'application/x-mpegURL'
+	   	 	});
+			document.getElementsByClassName("serverResponse")[0].innerHTML = liveResponse;
+			console.log("player.src",player.src);
+          },15000);  
+	  }
 	
-	//do live stuff
+	
+
 }
  
  
@@ -41,6 +67,9 @@ if(live){
 
  function initiateLivestream() {
 	 //set up livestream
+	 //warm up the camera
+	 connect_server();
+	
 	 livestreamForm.requestSubmit();
 	
   }

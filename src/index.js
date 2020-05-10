@@ -19,8 +19,10 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.json({limit: '2Gb'}));
 
 //placeholder image for the iframe
-var placeholderImage = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1810676/video_placeholder.png";
-var iframecode = "img src='"+placeholderImage+"' width='100%'";
+var placeholderImage = "pont.jpg";
+var iframecode = placeholderImage;
+var liveStreamManifest;
+//var iframecode = "img src='"+placeholderImage+"' width='100%'";
 
 //formidable takes the form data and saves the file, and parameterises the fields into JSON
 const formidable = require('formidable')
@@ -55,7 +57,6 @@ app.get('/', (req, res) => {
 	if(live){
 		//we have to add a livestream!
 		console.log("live!");
-		
 		//live & socket stuff
 		var spawn = require('child_process').spawn;
 		const server = require('http').createServer(app);
@@ -64,56 +65,61 @@ app.get('/', (req, res) => {
 			console.error("FFMpeg not found in system cli; please install ffmpeg properly or make a softlink to ./!");
 			process.exit(-1);
 		});
-		
-		//TODO live stuff
-		//i need to set up a  RTMP server from the list
+		//set up a  RTMP server from the list
 		//list of streams from api.video
-		let streamList = client.lives.search();
-		
+		let streamList = client.lives.search();	
 		streamList.then(function(streams) {
 			
 			let streamCount = streams.length;
 			var streamKey;
 			var streamId;
-			//pick a random stream, and make sure it is not broadcasting
+			// loop throigh all the available streams, and make sure that it is not broadcasting
 			var counter =0;
 			let chosenStream = streamPicker(streams,counter);
 			console.log("stream chosen",streams[chosenStream]);
 			if (chosenStream <0){
-				//TODO
-				//Error message required
-				
+				//all the streams are in use
 				//no streams are availabe
 				var videoResponse = "All the test streams are in use. Please try again later."
-				
 				return res.render('index', {iframecode, videoResponse, rtmpEndpoint});
 			}else{
 				//valid stream
-				
 				streamKey = streams[chosenStream].streamKey;
 				streamId = streams[chosenStream].liveStreamId;
 				rtmpEndpoint = "rtmp://broadcast.api.video/s/"+streamKey;
 				console.log("rtmp endpoint",rtmpEndpoint );
 			}
-			//we've esablished the stream, 
-			var streamUrl = "https://embed.api.video/live/" + streamId;
-			//var iframecode = "iframe src='"+player+"#autoplay'  width = '100%' frameborder='0' scrolling='no'";
-				
-		    iframecode = "iframe src='"+streamUrl+"' controls width='100%' frameborder='0' scrolling='no'";
-			var videoResponse = JSON.stringify(streams[chosenStream],null, 2);
+			//we've esablished the stream, we want to use, so connect the id with the bas url
+			var streamUrl = "https://live.api.video/" + streamId;
 			
+			//livestream manifest url:
+		    liveStreamManifest = streamUrl+".m3u8";
+			//
+			//api response says "broadcasting:false". let's fix that
+			streams[chosenStream].broadcasting = true;
+			
+			//the API response needs to be a string
+			var  liveResponse = JSON.stringify(streams[chosenStream],null, 2);
+			//in addition to sending the API response, we should havea. placeholder message while the video buffersup
+			var  videoResponse = "Your Livestream will start in a few seconds..."
+			
+			//finally - the iframecode is not an iframe, but for videojs
+			iframecode = "iframe width='0' height='0'";
+			
+			console.log(iframecode);
 			//we should not reyurn the page until broadcasting is true
 			//but broadcasting cant be true until the camera starts - ehich requires the page!
 			
+			//set a timeout
            				
-			return res.render('index', {iframecode, videoResponse, rtmpEndpoint});   	 		
+			return res.render('index', {iframecode, videoResponse, rtmpEndpoint, liveStreamManifest, liveResponse});   	 		
 
 		});
 		
 		
 	}else{
-	
-		iframecode =  "img src='"+placeholderImage+"' width='100%'";
+	    //reset to default image
+		iframecode = "iframe id='videoPlayer', src='"+placeholderImage+"', height='100%', width='100%'";
 		var videoResponse = "When you upload a video, the API response will appear here."
 		//not live..just loading the page
 		console.log("default page", iframecode);
@@ -199,7 +205,8 @@ app.post('/', (req,res) =>{
 				
 				var videoResponse = "Video uploaded in: "+ uploadSeconds+"s \n Video processed in: " + processSeconds +"s \n "+videoJson;
 				console.log("videoResponse", videoResponse);
-				iframecode = "iframe src='"+player+"#autoplay'  width = '100%' frameborder='0' scrolling='no'";
+				iframecode = iframecode = "iframe id='videoPlayer', src='"+player+"#autoplay', height='100%', width='100%'";
+
 				console.log(iframecode);
 				
 			
@@ -301,8 +308,8 @@ io.on('connection', function(socket){
 			var ops = [
 				'-i','-',
 				 '-c:v', 'libx264', '-preset', 'ultrafast', '-tune', 'zerolatency', 
-				'-max_muxing_queue_size', '1000', 
-				'-bufsize', '5000',
+				//'-max_muxing_queue_size', '1000', 
+				//'-bufsize', '5000',
 				//'-r', '1', '-g', '2', '-keyint_min','2', 
 			       '-r', framerate, '-g', framerate*2, '-keyint_min',keyint_min, 
 					'-x264opts',keyint, '-crf', '25', '-pix_fmt', 'yuv420p',

@@ -1,37 +1,41 @@
 head 
+  link(rel='stylesheet', href='/video-js.min.css')
   link(rel='stylesheet', href='/style.css')
   link(rel='icon', href='/icon.ico', type='image/x-icon')
   script(src='/socket.io.js')
+  script(src='/video.min.js')
   script(src='/demo.js')
+
 body
-  .container
-    |
-    .buttons
-      .upload
+
+  .buttons
+    .upload
         form(name='uploadForm', action='/' method = 'POST',  enctype="multipart/form-data")
           input(id='text',type='text', name = "test", value="test",style='display:none')
           input(id='file',type='file', name="source", style='display:none')
           input(class="button" type="button",value='Upload a video',onclick='thisFileUpload();')
-      .live
+    .live
         form(name='livestreamForm',action='/' method = 'GET')
           input(id='livetext',type='text', name = "live", value="true",style='display:none')
           input(class = "button",type="submit", name="livestream", value ='5 minute livestream' onclick='initiateLivestream();')
+  .container
+    |
     .video
-      |
       #{iframecode}
-      p
+      video(id='liveVideo' class="video-js" controls width="300"  autoplay muted)
     .serverResponse
       | 
       p #{videoResponse}
       p
-    #liveTest
-    #Livestream
-      p 
-    #output_message
-    #output_console
-    
-    #rtmpEndpoint #{rtmpEndpoint}
-    #video_show
-    video(id='output_video',autoplay)
+  #liveTest
+  #Livestream
+    p 
+  #output_message
+  #output_console
+  #liveManifest(style='display:none') #{liveStreamManifest}  
+  #liveResponse(style='display:none') #{liveResponse}  
+  #rtmpEndpoint #{rtmpEndpoint}
+  #video_show
+  video(id='output_video',autoplay)
 	
     
