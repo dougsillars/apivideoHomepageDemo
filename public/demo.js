@@ -213,7 +213,9 @@ function requestMedia(){
 		//let supported = navigator.mediaDevices.getSupportedConstraints();
 		//console.log(supported);
 		console.log("chose the camera");
-		video_show(stream);//only show locally, not remotely
+		//removed for production
+		//to see local video add a class video_show to the page
+		//video_show(stream);//only show locally, not remotely
 		//recordingCircle.style.fill='red';
 		//socket.emit('config_rtmpDestination', url);
 		socket.emit('start','start');
