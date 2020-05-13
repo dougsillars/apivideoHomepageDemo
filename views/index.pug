@@ -1,6 +1,7 @@
 head 
   link(rel='stylesheet', href='/video-js.min.css')
-  link(rel='stylesheet', href='/style.css')
+  
+  link(rel='stylesheet', href='https://api-video-website.netlify.app/assets/styles/demoStyle.css')
   link(rel='icon', href='/icon.ico', type='image/x-icon')
   script(src='/socket.io.js')
   script(src='/video.min.js')
@@ -8,25 +9,34 @@ head
 
 body
 
-  .buttons
-    .upload
+  .container
+   .actionsWrapper
+    .action__upload
         form(name='uploadForm', action='/' method = 'POST',  enctype="multipart/form-data")
           input(id='text',type='text', name = "test", value="test",style='display:none')
-          input(id='file',type='file', name="source", style='display:none')
-          input(class="button" type="button",value='Upload a video',onclick='thisFileUpload();')
-    .live
+          label(for='file', class="uploadFile")
+           .uploadFile__icon
+            img(draggable="false", src="https://www.datocms-assets.com/26885/1589195859-upload.png", alt="")
+           .uploadFile__content
+            span(class='uploadFile__content__title') Drop a video here
+            span(class='uploadFile__content__desc')  or click to browse for a file (max 100mb)
+           input(id='file',type='file', name="source", class="inputFile", style='display:none', onclick='thisFileUpload();')
+    .action__or
+      span or       
+    .action__live
         form(name='livestreamForm',action='/' method = 'GET')
           input(id='livetext',type='text', name = "live", value="true",style='display:none')
-          input(class = "button",type="submit", name="livestream", value ='5 minute livestream' onclick='initiateLivestream();')
-  .container
-    |
-    .video
-      #{iframecode}
-      video(id='liveVideo' class="video-js" controls width="300"  autoplay muted)
-    .serverResponse
-      | 
-      p #{videoResponse}
-      p
+          input(class = "gradientButton",type="submit", name="livestream", value ='Live with your webcam' onclick='initiateLivestream();')
+   .resultsWrapper
+      .resultCol(class="result__server")
+        .result__serverWrapper
+          .result__server__body
+            p #{videoResponse}
+      .resultCol(class="result__video")
+        .result__videoWrapper
+          #{iframecode}
+          video(id='liveVideo' class="video-js" controls width="300"  autoplay muted)
+      
   #liveTest
   #Livestream
     p 

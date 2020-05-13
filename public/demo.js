@@ -39,7 +39,7 @@ if(live){
 	      	  	src: liveManifest,
 	      	  	type: 'application/x-mpegURL'
 	   	 	});
-			document.getElementsByClassName("serverResponse")[0].innerHTML = liveResponse;
+			document.getElementsByClassName("result__server__body")[0].innerHTML = liveResponse;
 			console.log("player.src",player.src);
           },15000);  
 	  }
@@ -261,8 +261,8 @@ function requestMedia(){
 		console.log(err);
 		var error ="unknown";
 		var errorMessage = "Sorry, an unknown error occurred.";
-		var blackbox = document.getElementsByClassName("serverResponse");
-		//there is only one element with the class serverResponse
+		var blackbox = document.getElementsByClassName("result__server__body");
+		//there is only one element with the class result__server__body
 		if(err.message){
 			error = err.message;
 		}

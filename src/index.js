@@ -105,7 +105,7 @@ app.get('/', (req, res) => {
 			var  videoResponse = "Your Livestream will start in a few seconds..."
 			
 			//finally - the iframecode is not an iframe, but for videojs
-			iframecode = "iframe width='0' height='0'";
+			iframecode = "iframe width='0' height='0' style='display:none'";
 			
 			console.log(iframecode);
 			//we should not reyurn the page until broadcasting is true
