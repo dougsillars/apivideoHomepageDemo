@@ -8,6 +8,9 @@ var audioBitrate = 11025;
 var width = 240;
 var height = 240;
 
+
+
+
 if(live){
 	
 	var mediaRecorder;
@@ -23,7 +26,7 @@ if(live){
       //onloadstuff
     window.onload = function(){
     //define the video player  and url 
- 	   	const player = videojs('liveVideo');
+ 	  	const player = videojs('liveVideo');
 		console.log("player",player);
 	//check to see if the video exists or not 
 	//it only exists once a stream has started
@@ -31,9 +34,18 @@ if(live){
      
 			var liveManifest = document.getElementById("liveManifest").innerHTML;
 			var liveResponse = document.getElementById("liveResponse").innerHTML;
+			//{ "liveStreamId": "li2kvDGqdxa0q5AsOOBaGA1k", "streamKey": "3622465d-7de4-44ce-bc70-49b09484efb7", "name": "website live4", "record": false, "broadcasting": true, "assets": { "iframe": "<iframe src=\"https://embed.api.video/live/li2kvDGqdxa0q5AsOOBaGA1k\" width=\"100%\" height=\"100%\" frameborder=\"0\" scrolling=\"no\" allowfullscreen=\"\"></iframe>", "player": "https://embed.api.video/live/li2kvDGqdxa0q5AsOOBaGA1k", "hls": "https://live.api.video/li2kvDGqdxa0q5AsOOBaGA1k.m3u8", "thumbnail": "https://cdn.api.video/live/li2kvDGqdxa0q5AsOOBaGA1k/thumbnail.jpg" } }
+			
 			
 			console.log("liveManifest",liveManifest);
+			//liveManifest https://live.api.video/li2kvDGqdxa0q5AsOOBaGA1k.m3u8  
 			//add player
+	    //    window.player = apiVideoSdk.create("result__videoWrapper", { 
+	    //        id: "<VIDEO_ID>", 
+	            // ... other optional options 
+	    //    });
+	
+	
 			console.log("adding video url!");
 	    	player.src({
 	      	  	src: liveManifest,
@@ -47,8 +59,80 @@ if(live){
 	
 
 }
+window.onload = function(){
+   	dropVideo();
+		
+}
+
+
+
  
- 
+function dropVideo(){
+	
+	let dropArea = document.getElementsByClassName("action__upload")[0];
+	console.log(dropArea);
+
+	dropArea.addEventListener('dragenter', preventDefaults, false);
+	dropArea.addEventListener('dragleave', preventDefaults, false);
+	dropArea.addEventListener('dragover', preventDefaults, false);
+	dropArea.addEventListener('drop', preventDefaults, false);
+
+	;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+		dropArea.addEventListener(eventName, preventDefaults, false);
+		console.log("prevented defauls");
+	})
+
+	function preventDefaults (e) {
+	  e.preventDefault()
+	  e.stopPropagation()
+	}
+
+	dropArea.addEventListener('drop', handleDrop, false);
+
+	function handleDrop(e) {
+		let dt = e.dataTransfer;
+		console.log("dt", dt);
+		
+		//the drop gives me a file list
+		let fileList = dt.files;
+		console.log("filelist?",fileList);
+   	 	//just do the form here
+		var fileElement = document.getElementById("file");
+		//var newFileList = new FileList();
+		newFileList = [file[0]];
+		console.log("newFileList", newFileList);
+		fileElement.files =fileList ;
+		console.log("fileElement", fileElement.files);
+		//var upload = document.getElementById('upload');
+		
+		
+		
+		//forminJS.append('username', 'Chris');
+	    //forminJS.append('source', file[0], 'myvideo.mp4');
+		//console.log("forminJSuserbname",forminJS.getAll('username'));
+		//console.log("forminJSfile",forminJS.getAll('source'));
+		//console.log("forminJS", forminJS);
+		
+        //uploadForm.submit("/", method = 'POST',  enctype="multipart/form-data");
+	    //var fileElement = document.getElementById('file');
+		//fileElement.files[0] = file[0];
+		
+		//console.log("formData2",formData);
+		//console.log("fileelement",fileElement);
+		//console.log("fileelement files",fileElement.files);
+		//uploadForm.submit("/", method = 'POST',  enctype="multipart/form-data");
+        uploadForm.submit("/", method = 'POST',  enctype="multipart/form-data");
+	 
+	  }
+  }
+		
+	
+	
+	
+
+
+
+
  
  function thisFileUpload() {
     //get VOD video to upload
@@ -177,10 +261,11 @@ function show_output(str){
 			console.log("state disconec= " +state);
 			output_message.innerHTML+=('ERROR: server disconnected!');
 			console.log('ERROR: server disconnected!' +reason);
-			//recordingCircle.style.fill='gray';
-			//reconnect the server
-			//connect_server();
-		
+			
+			//error message to users
+			//document.getElementsByClassName("result__server__body")[0].innerHTML
+			document.getElementsByClassName("result__server__body")[0].innerHTML="This demo requires a steady internet connection with a fast upload rate. Please try again later.";
+					
 	
 		});
 	
@@ -210,9 +295,11 @@ function requestMedia(){
                       navigator.mediaDevices.msGetUserMedia ||
                       navigator.mediaDevices.webkitGetUserMedia);
 	navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
+		console.log("settings", stream);
+		
 		//let supported = navigator.mediaDevices.getSupportedConstraints();
-		//console.log(supported);
-		console.log("chose the camera");
+		//console.log("supported details", supported);
+		//console.log("chose the camera");
 		//removed for production
 		//to see local video add a class video_show to the page
 		//video_show(stream);//only show locally, not remotely

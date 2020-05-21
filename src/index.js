@@ -19,7 +19,7 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.json({limit: '2Gb'}));
 
 //placeholder image for the iframe
-var placeholderImage = "pont.jpg";
+var placeholderImage = "/pont.jpg";
 var iframecode = placeholderImage;
 var liveStreamManifest;
 //var iframecode = "img src='"+placeholderImage+"' width='100%'";
@@ -120,7 +120,7 @@ app.get('/', (req, res) => {
 		
 	}else{
 	    //reset to default image
-		iframecode = "iframe id='videoPlayer', src='"+placeholderImage+"', height='100%', width='100%'";
+		iframecode = "img src="+placeholderImage;
 		var videoResponse = "When you upload a video, the API response will appear here."
 		//not live..just loading the page
 		console.log("default page", iframecode);

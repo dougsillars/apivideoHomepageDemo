@@ -1,6 +1,5 @@
 head 
   link(rel='stylesheet', href='/video-js.min.css')
-  
   link(rel='stylesheet', href='https://api-video-website.netlify.app/assets/styles/demoStyle.css')
   link(rel='icon', href='/icon.ico', type='image/x-icon')
   script(src='/socket.io.js')
@@ -11,9 +10,9 @@ body
 
   .container
    .actionsWrapper
-    .action__upload
-        form(name='uploadForm', action='/' method = 'POST',  enctype="multipart/form-data")
-          input(id='text',type='text', name = "test", value="test",style='display:none')
+    .action__upload(id='action__upload')
+        form(id='upload',name='uploadForm',action='/' ,method = 'POST',  enctype="multipart/form-data")
+     
           label(for='file', class="uploadFile")
            .uploadFile__icon
             img(draggable="false", src="https://www.datocms-assets.com/26885/1589195859-upload.png", alt="")
@@ -40,12 +39,12 @@ body
   #liveTest
   #Livestream
     p 
-  #output_message(style='display:none')
-  #output_console(style='display:none')
+  #output_message()
+  #output_console()
   #liveManifest(style='display:none') #{liveStreamManifest}  
   #liveResponse(style='display:none') #{liveResponse}  
   #rtmpEndpoint(style='display:none') #{rtmpEndpoint}
-  #video_show(style='display:none')
+  #video_show()
   
 	
     
