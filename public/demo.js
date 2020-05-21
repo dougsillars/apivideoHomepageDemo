@@ -7,7 +7,7 @@ var framerate = 10;
 var audioBitrate = 11025;
 var width = 240;
 var height = 240;
-
+var livestreamTimeout = 15000;
 
 
 
@@ -25,11 +25,12 @@ if(live){
    
       //onloadstuff
     window.onload = function(){
+		//dragand drop for live
+		dropVideo();
+		
+		
     //define the video player  and url 
- 	  	const player = videojs('liveVideo');
-		console.log("player",player);
-	//check to see if the video exists or not 
-	//it only exists once a stream has started
+    //only start the live player X seconds after starting recording
         setTimeout(function (){
      
 			var liveManifest = document.getElementById("liveManifest").innerHTML;
@@ -37,30 +38,35 @@ if(live){
 			//{ "liveStreamId": "li2kvDGqdxa0q5AsOOBaGA1k", "streamKey": "3622465d-7de4-44ce-bc70-49b09484efb7", "name": "website live4", "record": false, "broadcasting": true, "assets": { "iframe": "<iframe src=\"https://embed.api.video/live/li2kvDGqdxa0q5AsOOBaGA1k\" width=\"100%\" height=\"100%\" frameborder=\"0\" scrolling=\"no\" allowfullscreen=\"\"></iframe>", "player": "https://embed.api.video/live/li2kvDGqdxa0q5AsOOBaGA1k", "hls": "https://live.api.video/li2kvDGqdxa0q5AsOOBaGA1k.m3u8", "thumbnail": "https://cdn.api.video/live/li2kvDGqdxa0q5AsOOBaGA1k/thumbnail.jpg" } }
 			
 			
-			console.log("liveManifest",liveManifest);
+			console.log("liveResponse",liveResponse);
+			//<div id="liveManifest" style="display:none">https://live.api.video/li1kkTR1SwmEpuIZB2Dg9mBw.m3u8  </div>
 			//liveManifest https://live.api.video/li2kvDGqdxa0q5AsOOBaGA1k.m3u8  
+			var jsonResponse = JSON.parse(liveResponse);
+			var videoId = jsonResponse.liveStreamId;
+			console.log("videoId",videoId);
 			//add player
-	    //    window.player = apiVideoSdk.create("result__videoWrapper", { 
-	    //        id: "<VIDEO_ID>", 
-	            // ... other optional options 
-	    //    });
+			//No match found for selector result__videoWrapper
+	        window.player = apiVideoSdk.create("#liveVideo", { 
+	            id: videoId, 
+	            live: true,
+				autoplay:true,
+				muted:true 
+	        });
 	
-	
-			console.log("adding video url!");
-	    	player.src({
-	      	  	src: liveManifest,
-	      	  	type: 'application/x-mpegURL'
-	   	 	});
+				
+				//place the JSON into the response area
 			document.getElementsByClassName("result__server__body")[0].innerHTML = liveResponse;
-			console.log("player.src",player.src);
-          },15000);  
+          },livestreamTimeout);  
 	  }
 	
 	
 
-}
-window.onload = function(){
-   	dropVideo();
+}else{
+	
+	//not live
+	window.onload = function(){
+   		dropVideo();
+	}
 		
 }
 
@@ -99,8 +105,6 @@ function dropVideo(){
    	 	//just do the form here
 		var fileElement = document.getElementById("file");
 		//var newFileList = new FileList();
-		newFileList = [file[0]];
-		console.log("newFileList", newFileList);
 		fileElement.files =fileList ;
 		console.log("fileElement", fileElement.files);
 		//var upload = document.getElementById('upload');

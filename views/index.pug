@@ -3,7 +3,7 @@ head
   link(rel='stylesheet', href='https://api-video-website.netlify.app/assets/styles/demoStyle.css')
   link(rel='icon', href='/icon.ico', type='image/x-icon')
   script(src='/socket.io.js')
-  script(src='/video.min.js')
+  script(src='https://embed.api.video/sdk.js')
   script(src='/demo.js')
 
 body
@@ -34,13 +34,12 @@ body
       .resultCol(class="result__video")
         .result__videoWrapper
           #{iframecode}
-          video(id='liveVideo' class="video-js" controls width="300"  autoplay muted)
-      
+          #liveVideo
   #liveTest
   #Livestream
     p 
-  #output_message()
-  #output_console()
+  #output_message(style='display:none')
+  #output_console(style='display:none')
   #liveManifest(style='display:none') #{liveStreamManifest}  
   #liveResponse(style='display:none') #{liveResponse}  
   #rtmpEndpoint(style='display:none') #{rtmpEndpoint}
